@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>太阳影视 - 剧集榜单与影评资讯聚合站 | taiyangyingshi-app.github.io</title>
+<meta name="description" content="太阳影视是面向剧迷的影视信息聚合站，每日更新剧集热度榜、类型片推荐、影评长文与观影指南。打开 taiyangyingshi-app.github.io，按评分、年份、地区快速筛片，先看榜单再决定今晚看什么，省下翻片单的时间。">
+<meta name="keywords" content="太阳影视,taiyangyingshi-app,太阳影视官网,剧集榜单,影视推荐,影评资讯,观影指南,高分剧集,类型片推荐,热播剧排行">
+<meta name="author" content="太阳影视编辑部">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#0a0c11">
+<link rel="canonical" href="https://taiyangyingshi-app.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="太阳影视">
+<meta property="og:title" content="太阳影视 - 剧集榜单与影评资讯聚合站">
+<meta property="og:description" content="每日更新的剧集热度榜、类型片推荐与影评长文，先看榜单再挑片，今晚不纠结。">
+<meta property="og:url" content="https://taiyangyingshi-app.github.io/">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="太阳影视 - 剧集榜单与影评资讯聚合站">
+<meta name="twitter:description" content="剧集热度榜、类型片推荐、影评长文，一站看完再挑片。">
+<style>
+:root{
+  --bg:#0a0c11;
+  --bg2:#111520;
+  --card:#151a26;
+  --line:#242c3d;
+  --txt:#e8ecf5;
+  --sub:#98a2b8;
+  --brand:#ffb020;
+  --brand2:#ff6b3d;
+  --max:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Noto Sans CJK SC",system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.75;
+  letter-spacing:.2px;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+ul,ol{list-style:none}
+.container{width:100%;max-width:var(--max);margin:0 auto;padding:0 20px}
+.mono{font-family:"SFMono-Regular",Consolas,Menlo,monospace}
+
+/* 顶部细条 */
+.topbar{background:linear-gradient(90deg,#1a1105,#241a08 60%,#0a0c11);border-bottom:1px solid var(--line);font-size:13px;color:var(--sub)}
+.topbar .container{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between;min-height:38px;padding-top:6px;padding-bottom:6px}
+.topbar b{color:var(--brand);font-weight:600}
+.topbar .addr{color:#6f7a90}
+.topbar .addr b{color:#c9d3e6;font-weight:500}
+
+/* 导航 */
+.nav{position:sticky;top:0;z-index:60;background:rgba(10,12,17,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .container{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;letter-spacing:1px}
+.sun{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 32% 30%,#ffd977,var(--brand) 45%,var(--brand2) 100%);box-shadow:0 0 16px rgba(255,176,32,.45);position:relative;flex:none}
+.sun::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:1px dashed rgba(255,176,32,.35);animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.menu{display:flex;align-items:center;gap:26px;font-size:15px}
+.menu a{color:#cfd7e6;padding:6px 0;border-bottom:2px solid transparent}
+.menu a:hover,.menu a.on{color:var(--brand);border-bottom-color:var(--brand)}
+.burger{display:none;width:42px;height:34px;border:1px solid var(--line);border-radius:8px;background:var(--card);cursor:pointer}
+.burger i{display:block;width:18px;height:2px;background:var(--brand);margin:4px auto;border-radius:2px}
+
+/* 首屏 */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:
+  radial-gradient(900px 420px at 78% 8%,rgba(255,176,32,.16),transparent 62%),
+  radial-gradient(700px 380px at 12% 100%,rgba(255,107,61,.12),transparent 60%),
+  var(--bg2)}
+.hero .container{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center;padding:64px 20px 70px}
+.tagline{display:inline-block;font-size:13px;color:var(--brand);border:1px solid rgba(255,176,32,.4);border-radius:999px;padding:4px 14px;margin-bottom:18px;background:rgba(255,176,32,.07)}
+.hero h1{font-size:40px;line-height:1.28;font-weight:800;letter-spacing:.5px;margin-bottom:16px}
+.hero h1 em{font-style:normal;color:var(--brand)}
+.hero p.lead{color:var(--sub);font-size:16.5px;max-width:560px;margin-bottom:26px}
+.btnrow{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+.btn{display:inline-block;padding:11px 24px;border-radius:10px;font-size:15px;font-weight:600;border:1px solid transparent}
+.btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#1b1204}
+.btn.ghost{border-color:var(--line);color:#cfd7e6;background:rgba(255,255,255,.02)}
+.btn.ghost:hover{border-color:var(--brand);color:var(--brand)}
+.stats{display:flex;flex-wrap:wrap;gap:26px;padding-top:6px}
+.stats div span{display:block;font-size:24px;font-weight:800;color:#fff}
+.stats div small{color:var(--sub);font-size:13px}
+.urlbadge{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:13.5px;color:#7f8aa1;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:8px;padding:7px 13px}
+.urlbadge i{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-shadow:0 0 8px #3ddc84}
+
+/* 首屏右侧：胶片卡组 */
+.reel{position:relative;height:320px;border-radius:16px;border:1px solid var(--line);background:linear-gradient(160deg,#1b2233,#0d1119);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.reel::before{content:"";position:absolute;width:520px;height:520px;top:-180px;right:-160px;border-radius:50%;background:radial-gradient(circle,rgba(255,176,32,.35),transparent 65%)}
+.reel-hd{position:absolute;top:16px;left:18px;font-size:13px;color:var(--brand);letter-spacing:2px}
+.reel ul{position:absolute;left:18px;right:18px;bottom:18px;display:grid;gap:10px}
+.reel li{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:14px}
+.reel li b{color:#fff;font-weight:600}
+.reel li span{color:var(--brand);font-size:13px}
+
+/* 通用区块 */
+section{padding:66px 0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:30px}
+.sec-head h2{font-size:27px;font-weight:800;letter-spacing:.5px}
+.sec-head h2 i{display:inline-block;width:5px;height:22px;background:linear-gradient(var(--brand),var(--brand2));border-radius:3px;margin-right:10px;vertical-align:-3px}
+.sec-head p{color:var(--sub);font-size:14px}
+.sec-head a.more{color:var(--brand);font-size:14px;border-bottom:1px dotted rgba(255,176,32,.5)}
+
+/* 卡片栅格 */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-5px);border-color:rgba(255,176,32,.5)}
+.poster{height:150px;position:relative;display:flex;align-items:flex-end;padding:12px}
+.poster .score{position:absolute;top:10px;right:10px;background:rgba(10,12,17,.78);border:1px solid rgba(255,176,32,.5);color:var(--brand);font-size:13px;font-weight:700;border-radius:6px;padding:2px 8px}
+.poster .meta{font-size:12.5px;color:rgba(255,255,255,.82)}
+.p1{background:linear-gradient(140deg,#3a2a12,#8a4b16 55%,#1b1524)}
+.p2{background:linear-gradient(140deg,#12283a,#1f6f8b 60%,#101820)}
+.p3{background:linear-gradient(140deg,#2a1430,#6a2a6b 55%,#120f1e)}
+.p4{background:linear-gradient(140deg,#142a1c,#2f7a48 60%,#0e1712)}
+.p5{background:linear-gradient(140deg,#331414,#9c3b26 58%,#1a1013)}
+.p6{background:linear-gradient(140deg,#1b1f3a,#4b4fa8 60%,#10121f)}
+.p7{background:linear-gradient(140deg,#123033,#2c8f86 60%,#0d1618)}
+.p8{background:linear-gradient(140deg,#33210f,#c08a1e 58%,#17121a)}
+.card .body{padding:14px 16px 18px}
+.card h3{font-size:16.5px;font-weight:700;margin-bottom:6px}
+.card p{color:var(--sub);font-size:13.5px;line-height:1.65}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chips i{font-style:normal;font-size:12px;color:#b9c3d6;border:1px solid var(--line);border-radius:5px;padding:2px 8px;background:rgba(255,255,255,.02)}
+
+/* 榜单 */
+.rankbox{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.rank{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.rank h3{font-size:17px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.rank h3 em{font-style:normal;font-size:12px;color:var(--sub);font-weight:400}
+.rank li{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.07)}
+.rank li:last-child{border-bottom:none}
+.rank .no{width:26px;height:26px;flex:none;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:rgba(255,255,255,.06);color:#c3ccdd}
+.rank li:nth-child(1) .no{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#1b1204}
+.rank li:nth-child(2) .no{background:rgba(255,176,32,.28);color:#ffd489}
+.rank li:nth-child(3) .no{background:rgba(255,176,32,.14);color:#ffc25c}
+.rank .info{flex:1;min-width:0}
+.rank .info strong{display:block;font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar{height:5px;border-radius:4px;background:rgba(255,255,255,.08);margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--brand),var(--brand2))}
+.rank .hot{flex:none;font-size:13px;color:var(--brand);font-weight:600}
+
+/* 资讯 */
+.news{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.post{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:10px}
+.post time{font-size:12.5px;color:var(--sub)}
+.post h3{font-size:17px;line-height:1.5}
+.post p{color:var(--sub);font-size:14px;flex:1}
+.post .link{font-size:13.5px;color:var(--brand)}
+
+/* 特色 */
+.feat{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.fbox{border:1px solid var(--line);border-radius:14px;padding:24px;background:linear-gradient(180deg,rgba(255,176,32,.05),rgba(255,255,255,.01))}
+.fbox .ic{width:44px;height:44px;border-radius:12px;background:rgba(255,176,32,.12);border:1px solid rgba(255,176,32,.3);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;color:var(--brand);margin-bottom:14px}
+.fbox h3{font-size:17px;margin-bottom:8px}
+.fbox p{color:var(--sub);font-size:14px}
+
+/* 关于 + FAQ */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+.about p{color:var(--sub);margin-bottom:14px}
+.about .note{border-left:3px solid var(--brand);background:rgba(255,176,32,.06);padding:12px 16px;border-radius:0 10px 10px 0;font-size:14px;color:#cdd6e6}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--card);margin-bottom:12px;padding:14px 18px}
+.faq summary{cursor:pointer;font-size:15.5px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--brand);font-weight:700}
+.faq details[open] summary::after{content:"-"}
+.faq p{color:var(--sub);font-size:14px;margin-top:10px;border-top:1px dashed rgba(255,255,255,.08);padding-top:10px}
+
+/* CTA */
+.cta{background:linear-gradient(120deg,#191206,#241a08 45%,#0f131c);border-top:1px solid var(--line);text-align:center}
+.cta h2{font-size:28px;margin-bottom:12px}
+.cta p{color:var(--sub);max-width:620px;margin:0 auto 22px;font-size:15px}
+
+/* 页脚 */
+footer{background:#070910;border-top:1px solid var(--line);padding:48px 0 26px;font-size:14px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:26px;padding-bottom:26px}
+.fgrid h4{font-size:15px;margin-bottom:12px;color:#fff}
+.fgrid ul li{margin-bottom:8px}
+.fgrid ul a{color:var(--sub)}
+.fgrid ul a:hover{color:var(--brand)}
+.fbrand p{color:var(--sub);margin-top:12px;max-width:300px}
+.copy{border-top:1px solid var(--line);padding-top:18px;color:#6f7a90;font-size:13px;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
+.copy b{color:#aab5c9;font-weight:500}
+
+/* 响应式 */
+@media(max-width:980px){
+  .hero .container{grid-template-columns:1fr;padding:48px 20px 52px}
+  .hero h1{font-size:32px}
+  .reel{height:280px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .news,.feats{grid-template-columns:1fr 1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:720px){
+  .menu{display:none;position:absolute;left:0;right:0;top:64px;flex-direction:column;align-items:flex-start;gap:0;background:#0d1017;border-bottom:1px solid var(--line);padding:6px 20px 14px}
+  .menu.show{display:flex}
+  .menu a{width:100%;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .burger{display:block}
+  .nav .container{position:relative}
+  .grid,.news,.feats,.rankbox,.about{grid-template-columns:1fr}
+  section{padding:48px 0}
+  .sec-head h2{font-size:23px}
+  .hero h1{font-size:27px}
+  .stats{gap:18px}
+  .fgrid{grid-template-columns:1fr}
+  .copy{justify-content:flex-start}
+}
+@media(max-width:400px){
+  .poster{height:130px}
+  .btn{width:100%;text-align:center}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://taiyangyingshi-app.github.io/#website",
+      "url":"https://taiyangyingshi-app.github.io/",
+      "name":"太阳影视",
+      "alternateName":"taiyangyingshi-app",
+      "description":"太阳影视提供剧集热度榜、类型片推荐、影评长文与观影指南，每日更新。",
+      "inLanguage":"zh-CN",
+      "publisher":{"@id":"https://taiyangyingshi-app.github.io/#org"}
+    },
+    {
+      "@type":"Organization",
+      "@id":"https://taiyangyingshi-app.github.io/#org",
+      "name":"太阳影视",
+      "url":"https://taiyangyingshi-app.github.io/",
+      "description":"面向剧迷的影视信息聚合与观影参考站点"
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {
+          "@type":"Question",
+          "name":"太阳影视的剧集榜单依据什么排序？",
+          "acceptedAnswer":{"@type":"Answer","text":"榜单按站内搜索热度、收藏量与完播反馈三项加权计算，每日 09:00 与 21:00 各刷新一次，不接入任何付费排名。"}
+        },
+        {
+          "@type":"Question",
+          "name":"不注册能使用太阳影视的全部功能吗？",
+          "acceptedAnswer":{"@type":"Answer","text":"榜单、推荐与影评均可免注册浏览。收藏片单、订阅更新与影评投稿需要登录账号，账号体系仅用于同步个人片单。"}
+        },
+        {
+          "@type":"Question",
+          "name":"太阳影视是否提供影视资源的在线播放或下载？",
+          "acceptedAnswer":{"@type":"Answer","text":"太阳影视只做影视信息聚合与观影参考，提供作品资料、评分与观影渠道指引，本站服务器不存储任何影视正片文件，也不提供下载。"}
+        },
+        {
+          "@type":"Question",
+          "name":"手机上访问排版会乱吗？",
+          "acceptedAnswer":{"@type":"Answer","text":"页面采用自适应栅格，手机端自动切换为单列卡片，导航收进折叠菜单，320px 以上宽度均可正常阅读。"}
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<div class="topbar">
+  <div class="container">
+    <div><b>太阳影视</b> 今日榜单已更新 · 数据截止 21:00 · 共 1,286 部在榜作品</div>
+    <div class="addr mono">官方入口 <b>https://taiyangyingshi-app.github.io</b></div>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="container">
+    <a class="logo" href="#"><span class="sun" aria-hidden="true"></span>太阳影视</a>
+    <button class="burger" id="burger" aria-label="展开导航菜单"><i></i><i></i><i></i></button>
+    <div class="menu" id="menu">
+      <a href="#" class="on">首页</a>
+      <a href="#">剧集榜单</a>
+      <a href="#">类型推荐</a>
+      <a href="#">影评资讯</a>
+      <a href="#">观影指南</a>
+      <a href="#">关于我们</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div>
+      <span class="tagline">剧集榜单 · 类型推荐 · 影评长文</span>
+      <h1>今晚看什么，先来 <em>太阳影视</em> 翻榜单</h1>
+      <p class="lead">太阳影视把散落在各处的剧集信息收拢到一张榜单里：热度排序、类型筛选、评分对比、长篇影评，四步就能把今晚的两小时安排明白。不用在十几个片单之间来回跳，也不用被标题党剧透。</p>
+      <div class="btnrow">
+        <a class="btn primary" href="#">查看今日榜单</a>
+        <a class="btn ghost" href="#">按类型筛片</a>
+      </div>
+      <div class="stats">
+        <div><span>1,286</span><small>在榜作品</small></div>
+        <div><span>24</span><small>细分类型</small></div>
+        <div><span>2/日</span><small>榜单刷新</small></div>
+        <div><span>7.9万</span><small>累计短评</small></div>
+      </div>
+      <div class="urlbadge mono"><i aria-hidden="true"></i>https://taiyangyingshi-app.github.io</div>
+    </div>
+    <div class="reel" aria-hidden="true">
+      <div class="reel-hd">TOP UPDATE</div>
+      <ul>
+        <li><b>悬疑 · 长夜行</b><span>9.1</span></li>
+        <li><b>科幻 · 雾港回声</b><span>8.8</span></li>
+        <li><b>家庭 · 灶台上的信</b><span>8.6</span></li>
+        <li><b>纪录 · 一条河的四季</b><span>8.5</span></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="rec">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <h2><i aria-hidden="true"></i>编辑部在看的片</h2>
+        <p>本周新上榜单的八部作品，附一句话推荐理由</p>
+      </div>
+      <a class="more" href="#">查看完整片单</a>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="poster p1"><span class="score">9.1</span><span class="meta">悬疑 / 12 集 / 2025</span></div>
+        <div class="body">
+          <h3>长夜行</h3>
+          <p>一场跨年夜的停电，把六户人家的秘密全逼到了楼道里。真正的凶手在第四集才露出影子。</p>
+          <div class="chips"><i>烧脑</i><i>群像</i><i>反转多</i></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="poster p2"><span class="score">8.8</span><span class="meta">科幻 / 10 集 / 2025</span></div>
+        <div class="body">
+          <h3>雾港回声</h3>
+          <p>海边小城的信号塔开始播放二十年前的声音。设定不算新，但情感落点写得很实。</p>
+          <div class="chips"><i>软科幻</i><i>悬疑</i><i>慢热</i></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="poster p3"><span class="score">8.7</span><span class="meta">剧情 / 16 集 / 2024</span></div>
+        <div class="body">
+          <h3>第三种告别</h3>
+          <p>三个人，两次告别，一次没说出口。台词密度高，适合一次看两集，多了会腻。</p>
+          <div class="chips"><i>文艺</i><i>台词好</i><i>演技派</i></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="poster p4"><span class="score">8.6</span><span class="meta">家庭 / 20 集 / 2024</span></div>
+        <div class="body">
+          <h3>灶台上的信</h3>
+          <p>母亲留下的三十七封信，串起一家人的十年。后半段催泪，备好纸巾再看。</p>
+          <div class="chips"><i>温情</i><i>年代</i><i>适合全家</i></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="poster p5"><span class="score">8.5</span><span class="meta">犯罪 / 8 集 / 2025</span></div>
+        <div class="body">
+          <h3>沙丘以南</h3>
+          <p>边境小城的连环失踪案，节奏快得像在赶路。八集收尾干净，没有注水。</p>
+          <div class="chips"><i>硬核</i><i>短剧集</i><i>尺度大</i></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="poster p6"><span class="score">8.4</span><span class="meta">都市 / 24 集 / 2025</span></div>
+        <div class="body">
+          <h3>加班到天亮</h3>
+          <p>写字楼里四个人的晋升战。写的不是职场爽文，是那种说不出口的疲惫。</p>
+          <div class="chips"><i>现实</i><i>打工人</i><i>共鸣强</i></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="poster p7"><span class="score">8.5</span><span class="meta">纪录 / 6 集 / 2024</span></div>
+        <div class="body">
+          <h3>一条河的四季</h3>
+          <p>摄制组沿河走了整整一年。没有解说词堆砌，镜头自己会说话，适合当背景音。</p>
+          <div class="chips"><i>自然</i><i>摄影美</i><i>下饭</i></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="poster p8"><span class="score">8.2</span><span class="meta">喜剧 / 12 集 / 2025</span></div>
+        <div class="body">
+          <h3>楼下那家店</h3>
+          <p>社区便利店的日常，笑点都藏在货架之间。睡前看一集，心情会被托住。</p>
+          <div class="chips"><i>轻喜剧</i><i>治愈</i><i>单集独立</i></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="rank" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <h2><i aria-hidden="true"></i>太阳影视双榜</h2>
+        <p>热度榜看当下，口碑榜看长线 · 每日 09:00 / 21:00 刷新</p>
+      </div>
+      <a class="more" href="#">榜单规则说明</a>
+    </div>
+    <div class="rankbox">
+      <div class="rank">
+        <h3>本周热度榜 <em>按搜索与播放热度</em></h3>
+        <ol>
+          <li><span class="no">1</span><div class="info"><strong>长夜行</strong><div class="bar"><i style="width:96%"></i></div></div><span class="hot">96.4</span></li>
+          <li><span class="no">2</span><div class="info"><strong>沙丘以南</strong><div class="bar"><i style="width:91%"></i></div></div><span class="hot">91.8</span></li>
+          <li><span class="no">3</span><div class="info"><strong>雾港回声</strong><div class="bar"><i style="width:88%"></i></div></div><span class="hot">88.2</span></li>
+          <li><span class="no">4</span><div class="info"><strong>加班到天亮</strong><div class="bar"><i style="width:83%"></i></div></div><span class="hot">83.7</span></li>
+          <li><span class="no">5</span><div class="info"><strong>灶台上的信</strong><div class="bar"><i style="width:79%"></i></div></div><span class="hot">79.5</span></li>
+          <li><span class="no">6</span><div class="info"><strong>第三种告别</strong><div class="bar"><i style="width:74%"></i></div></div><span class="hot">74.1</span></li>
+        </ol>
+      </div>
+      <div class="rank">
+        <h3>长线口碑榜 <em>按站内评分与短评</em></h3>
+        <ol>
+          <li><span class="no">1</span><div class="info"><strong>一条河的四季</strong><div class="bar"><i style="width:94%"></i></div></div><span class="hot">9.3</span></li>
+          <li><span class="no">2</span><div class="info"><strong>长夜行</strong><div class="bar"><i style="width:92%"></i></div></div><span class="hot">9.1</span></li>
+          <li><span class="no">3</span><div class="info"><strong>灶台上的信</strong><div class="bar"><i style="width:89%"></i></div></div><span class="hot">8.9</span></li>
+          <li><span class="no">4</span><div class="info"><strong>雾港回声</strong><div class="bar"><i style="width:87%"></i></div></div><span class="hot">8.7</span></li>
+          <li><span class="no">5</span><div class="info"><strong>楼下那家店</strong><div class="bar"><i style="width:85%"></i></div></div><span class="hot">8.5</span></li>
+          <li><span class="no">6</span><div class="info"><strong>第三种告别</strong><div class="bar"><i style="width:84%"></i></div></div><span class="hot">8.4</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="news">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <h2><i aria-hidden="true"></i>影评与资讯</h2>
+        <p>编辑部原创新闻与长评，不做通稿搬运</p>
+      </div>
+      <a class="more" href="#">进入资讯频道</a>
+    </div>
+    <div class="news">
+      <article class="post">
+        <time datetime="2026-10-24">10 月 24 日 · 长评</time>
+        <h3>《长夜行》第四集那场楼道戏，为什么让人后背发凉</h3>
+        <p>导演把光源控制在两盏应急灯以内，观众获得的信息比剧中人还少，恐惧就来自这里。我们逐帧拆了这场戏的调度。</p>
+        <a class="link" href="#">阅读全文</a>
+      </article>
+      <article class="post">
+        <time datetime="2026-10-22">10 月 22 日 · 榜单观察</time>
+        <h3>本周热度榜：短剧集正在挤掉四十集长剧</h3>
+        <p>八到十二集的作品占了热度榜六成席位。不是观众没耐心，是注水剧情的代价变高了。</p>
+        <a class="link" href="#">阅读全文</a>
+      </article>
+      <article class="post">
+        <time datetime="2026-10-19">10 月 19 日 · 观影指南</time>
+        <h3>家庭剧怎么挑：三个指标避开催泪套路</h3>
+        <p>看冲突密度、看时间跨度、看配角是否功能性。符合其中两条，通常不会踩雷。</p>
+        <a class="link" href="#">阅读全文</a>
+      </article>
+      <article class="post">
+        <time datetime="2026-10-16">10 月 16 日 · 幕后</time>
+        <h3>《雾港回声》的声音设计：二十年时间差怎么听出来</h3>
+        <p>同一句台词用了四种底噪处理，年代感不是靠滤镜，是靠耳朵。</p>
+        <a class="link" href="#">阅读全文</a>
+      </article>
+      <article class="post">
+        <time datetime="2026-10-13">10 月 13 日 · 数据</time>
+        <h3>太阳影视 9 月数据通报：纪录类作品涨幅 34%</h3>
+        <p>自然与人文纪录的收藏量连续三个月上升，观看时段集中在晚间十点后。</p>
+        <a class="link" href="#">阅读全文</a>
+      </article>
+      <article class="post">
+        <time datetime="2026-10-10">10 月 10 日 · 专栏</time>
+        <h3>通勤路上适合看什么：单集独立的六种选择</h3>
+        <p>剧情连贯性弱、单集时长三十分钟内、不需要字幕高度专注，按这三条筛就对了。</p>
+        <a class="link" href="#">阅读全文</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="feat" id="guide">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <h2><i aria-hidden="true"></i>三种挑片方式</h2>
+        <p>太阳影视把筛片流程做成了三条路径，按当下心情选一条就行</p>
+      </div>
+    </div>
+    <div class="feats">
+      <div class="fbox">
+        <div class="ic" aria-hidden="true">01</div>
+        <h3>按类型筛</h3>
+        <p>24 个细分类型，可叠加地区、年份、集数区间三个条件。想看"2024 年之后、12 集以内的国产悬疑"，一次筛完。</p>
+      </div>
+      <div class="fbox">
+        <div class="ic" aria-hidden="true">02</div>
+        <h3>按榜单看</h3>
+        <p>热度榜反映当下讨论度，口碑榜反映长线质量。两个榜单的差异本身就是一个选题，我们每周会写观察。</p>
+      </div>
+      <div class="fbox">
+        <div class="ic" aria-hidden="true">03</div>
+        <h3>按场景挑</h3>
+        <p>下饭、通勤、睡前、全家一起看，四种场景各有片单。避免在饭桌上打开一部需要高度专注的剧。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <h2><i aria-hidden="true"></i>关于太阳影视</h2>
+        <p>一个把片单做薄的影视信息站</p>
+      </div>
+    </div>
+    <div class="about">
+      <div>
+        <p>太阳影视成立于 2023 年，做一件事：把散落在各处的剧集信息收拢成一张能用的榜单。我们不追热搜词条，也不做标题党剧透，评分来自站内短评的加权统计，榜单每日 09:00 与 21:00 各刷新一次。</p>
+        <p>编辑部每周出三篇原创长评，只写看完之后的真实判断，包括"不建议看"的部分。片单里出现的每部作品，都至少有一位编辑完整看过。</p>
+        <p>站内提供作品资料、评分对比与观影渠道指引。若你发现条目信息有误，可通过下方投稿入口提交更正，我们会在两个工作日内处理。</p>
+        <div class="note">说明：太阳影视仅提供影视信息与观影参考，本站服务器不存储任何影视正片文件，也不提供在线播放或下载服务。</div>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>太阳影视的剧集榜单依据什么排序？</summary>
+          <p>按站内搜索热度、收藏量与完播反馈三项加权计算，每日 09:00 与 21:00 各刷新一次，不接入任何付费排名。</p>
+        </details>
+        <details>
+          <summary>不注册能使用全部功能吗？</summary>
+          <p>榜单、推荐与影评均可免注册浏览。收藏片单、订阅更新与影评投稿需要登录账号，账号体系仅用于同步个人片单。</p>
+        </details>
+        <details>
+          <summary>太阳影视提供在线播放或下载吗？</summary>
+          <p>不提供。本站只做影视信息聚合与观影参考，提供作品资料、评分与正规观影渠道指引。</p>
+        </details>
+        <details>
+          <summary>手机上访问排版会乱吗？</summary>
+          <p>页面采用自适应栅格，手机端自动切换为单列卡片，导航收进折叠菜单，320px 以上宽度均可正常阅读。</p>
+        </details>
+        <details>
+          <summary>怎么投稿影评或更正条目？</summary>
+          <p>在资讯频道底部提交稿件或纠错信息，注明作品名称与问题所在，编辑部两个工作日内回复。</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>把今晚的两小时交给太阳影视</h2>
+    <p>收藏这份榜单，下次打开 taiyangyingshi-app.github.io 就能直接看到更新。挑片这件事，不该占用你半小时。</p>
+    <div class="btnrow" style="justify-content:center">
+      <a class="btn primary" href="#">收藏本站</a>
+      <a class="btn ghost" href="#">订阅每日榜单</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="fgrid">
+      <div class="fbrand">
+        <a class="logo" href="#"><span class="sun" aria-hidden="true"></span>太阳影视</a>
+        <p>剧集榜单 · 类型推荐 · 影评长文 · 观影指南，每日更新的影视信息聚合站。</p>
+        <p class="mono" style="font-size:13px;color:#6f7a90">https://taiyangyingshi-app.github.io</p>
+      </div>
+      <div>
+        <h4>榜单频道</h4>
+        <ul>
+          <li><a href="#">热度榜</a></li>
+          <li><a href="#">口碑榜</a></li>
+          <li><a href="#">新剧预告</a></li>
+          <li><a href="#">完结补档</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>内容频道</h4>
+        <ul>
+          <li><a href="#">影评长文</a></li>
+          <li><a href="#">榜单观察</a></li>
+          <li><a href="#">幕后解析</a></li>
+          <li><a href="#">观影指南</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关于站点</h4>
+        <ul>
+          <li><a href="#">编辑部</a></li>
+          <li><a href="#">榜单规则</a></li>
+          <li><a href="#">投稿与纠错</a></li>
+          <li><a href="#">免责声明</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <div>© <span id="yr">2026</span> 太阳影视 taiyangyingshi-app · 本站仅提供影视信息，不存储或提供任何影视正片资源</div>
+      <div class="mono"><b>https://taiyangyingshi-app.github.io</b></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var b=document.getElementById('burger'),m=document.getElementById('menu');
+  b.addEventListener('click',function(){m.classList.toggle('show');});
+  var links=m.getElementsByTagName('a');
+  for(var i=0;i<links.length;i++){
+    links[i].addEventListener('click',function(){
+      m.classList.remove('show');
+      for(var j=0;j<links.length;j++){links[j].className='';}
+      this.className='on';
+    });
+  }
+  document.getElementById('yr').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
